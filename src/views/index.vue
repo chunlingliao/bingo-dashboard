@@ -3,9 +3,87 @@
   <div class="text-left header">
     <div class="container">賓果後台管理</div>
   </div>
+
   <div class="container">
-    
+    <div class="form-group mt-4">
+      <label for="lname" class="d-inline-block">新增</label>
+      <input type="text" class="form-control mx-sm-3 d-inline-block" placeholder="筆數">
+      <label for="lname" class="d-inline-block">筆序號</label>
+      <button type="submit" class="btn btn-primary mb-2 d-inline-block ml-2 mr-5">新增</button>
+
+      <select v-model="selected" class="form-control filterSelect d-inline-block">
+        <option selected>全部</option>
+        <option>使用中</option>
+        <option>未使用</option>
+      </select>
+    </div>
+      <div class="text-muted text-left mb-4 tip">
+        *必須為數字
+      </div>
   </div>
+
+  <!-- 表格 -->
+  <div class="tab-pane fade show active container" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">開始日期</th>
+            <th scope="col">預計過期日</th>
+            <th scope="col">序號</th>
+            <th scope="col">是否啟用</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="">
+              2020-12-17
+            </td>
+            <td>
+              2020-12-30
+            </td>
+            <td>
+              31066814-5ae0-400c-a1a5-c8e94cbc8381
+            </td>
+            <td>
+              <div class="">是</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="">
+              2020-12-17
+            </td>
+            <td>
+              2020-12-30
+            </td>
+            <td>
+              31066814-5ae0-400c-a1a5-c8e94cbc8381
+            </td>
+            <td>
+              <div class="">是</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="">
+              2020-12-17
+            </td>
+            <td>
+              2020-12-30
+            </td>
+            <td>
+              31066814-5ae0-400c-a1a5-c8e94cbc8381
+            </td>
+            <td>
+              <div class="">是</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
 </div>
 </template>
 

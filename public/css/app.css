@@ -10,3 +10,15 @@
   font-size: 18px;
   padding: 8px 0;
 }
+
+input, .filterSelect{
+  width: 120px !important;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.tip{
+  font-size: 12px;
+}
