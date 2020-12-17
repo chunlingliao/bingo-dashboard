@@ -1,0 +1,12 @@
+/* 共用主色系 */
+.text-primary {
+  color: #027eff
+}
+
+/* 賓果後台 */
+.header {
+  background-color: #027eff;
+  color: #ffffff;
+  font-size: 18px;
+  padding: 8px 0;
+}

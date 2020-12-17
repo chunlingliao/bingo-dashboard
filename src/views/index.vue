@@ -1,6 +1,11 @@
 <template>
 <div>
-
+  <div class="text-left header">
+    <div class="container">賓果後台管理</div>
+  </div>
+  <div class="container">
+    
+  </div>
 </div>
 </template>
 
