@@ -16,6 +16,7 @@
             {{ option.text }}
           </option>
       </select>
+      <button type="button" class="btn btn-info float-right">下載</button>
     </div>
       <div class="text-muted text-left mb-4 tip">
         *必須為數字
@@ -36,55 +37,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr v-for="item in itemList" :key="item.id">
             <td class="">
-              2020-12-17
+              {{ item.created_date }}
             </td>
             <td>
-              2020-12-30
+              {{ item.end_date }}
             </td>
             <td>
-              31066814-5ae0-400c-a1a5-c8e94cbc8381
+              {{ item.token }}
             </td>
             <td>
-              <div class=""><i class="fas fa-check-circle"></i></div>
+              <div v-if="item.used==='true'">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <div v-else>
+                <i class="fas fa-times-circle"></i>
+              </div>
             </td>
             <td>
-              <div class=""><i class="fas fa-trash"></i></div>
-            </td>
-          </tr>
-          <tr>
-            <td class="">
-              2020-12-17
-            </td>
-            <td>
-              2020-12-30
-            </td>
-            <td>
-              31066814-5ae0-400c-a1a5-c8e94cbc8381
-            </td>
-            <td>
-              <div class=""><i class="fas fa-times-circle"></i></div>
-            </td>
-            <td>
-              <div class=""><i class="fas fa-trash"></i></div>
-            </td>
-          </tr>
-          <tr>
-            <td class="">
-              2020-12-17
-            </td>
-            <td>
-              2020-12-30
-            </td>
-            <td>
-              31066814-5ae0-400c-a1a5-c8e94cbc8381
-            </td>
-            <td>
-              <div class=""><i class="fas fa-times-circle"></i></div>
-            </td>
-            <td>
-              <div class=""><i class="fas fa-trash"></i></div>
+              <div><i class="fas fa-trash"></i></div>
             </td>
           </tr>
         </tbody>
@@ -93,8 +65,6 @@
   </div>
 </div>
 
-
-</div>
 </template>
 
 <script>
@@ -106,11 +76,32 @@ export default {
     // 資料
     return {
       src: "" ,//追蹤 store用
-      selected: 'A',
+      selected: 'all',
         options: [
-        { text: '全部', value: 'A' },
-        { text: '使用中', value: 'B' },
-        { text: '未使用', value: 'C' }
+        { text: '全部', value: 'all' },
+        { text: '使用中', value: 'used' },
+        { text: '未使用', value: 'not_used' }
+      ],
+
+      itemList:[
+        {
+          created_date: '2020-12-18',
+          end_date: '2020-12-30',
+          token: 'fd4131c2-7247-4211-bb3c-cc0c79b5aea0',
+          used: 'true'
+        },
+        {
+          created_date: '2020-12-20',
+          end_date: '2021-01-30',
+          token: 'fd4131c2-7247-4211-bb3c-cc0c79b5aea0',
+          used: 'false'
+        },
+        {
+          created_date: '2020-12-10',
+          end_date: '2021-02-03',
+          token: 'fd4131c2-7247-4211-bb3c-cc0c79b5aea0',
+          used: 'true'
+        }
       ]
     };
   },
