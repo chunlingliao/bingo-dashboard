@@ -22,3 +22,24 @@ input, .filterSelect{
 .tip{
   font-size: 12px;
 }
+
+/* icon 樣式 */
+.fa-times-circle{
+  color:#adadad;
+  font-size:20px;
+}
+
+.fa-check-circle{
+  color:#00be4a;
+  font-size:20px;
+}
+
+.fa-trash{
+  color:#adadad;
+  font-size:20px;
+}
+
+/* 表格 */
+.table {
+  border: 2px solid #ebeef1;
+}

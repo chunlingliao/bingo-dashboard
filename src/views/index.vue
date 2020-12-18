@@ -12,9 +12,9 @@
       <button type="submit" class="btn btn-primary mb-2 d-inline-block ml-2 mr-5">新增</button>
 
       <select v-model="selected" class="form-control filterSelect d-inline-block">
-        <option selected>全部</option>
-        <option>使用中</option>
-        <option>未使用</option>
+          <option v-for="option in options" v-bind:value="option.value" :key="option">
+            {{ option.text }}
+          </option>
       </select>
     </div>
       <div class="text-muted text-left mb-4 tip">
@@ -32,6 +32,7 @@
             <th scope="col">預計過期日</th>
             <th scope="col">序號</th>
             <th scope="col">是否啟用</th>
+            <th scope="col">刪除</th>
           </tr>
         </thead>
         <tbody>
@@ -46,7 +47,10 @@
               31066814-5ae0-400c-a1a5-c8e94cbc8381
             </td>
             <td>
-              <div class="">是</div>
+              <div class=""><i class="fas fa-check-circle"></i></div>
+            </td>
+            <td>
+              <div class=""><i class="fas fa-trash"></i></div>
             </td>
           </tr>
           <tr>
@@ -60,7 +64,10 @@
               31066814-5ae0-400c-a1a5-c8e94cbc8381
             </td>
             <td>
-              <div class="">是</div>
+              <div class=""><i class="fas fa-times-circle"></i></div>
+            </td>
+            <td>
+              <div class=""><i class="fas fa-trash"></i></div>
             </td>
           </tr>
           <tr>
@@ -74,7 +81,10 @@
               31066814-5ae0-400c-a1a5-c8e94cbc8381
             </td>
             <td>
-              <div class="">是</div>
+              <div class=""><i class="fas fa-times-circle"></i></div>
+            </td>
+            <td>
+              <div class=""><i class="fas fa-trash"></i></div>
             </td>
           </tr>
         </tbody>
@@ -95,7 +105,13 @@ export default {
   data: function() {
     // 資料
     return {
-      src: "" //追蹤 store用
+      src: "" ,//追蹤 store用
+      selected: 'A',
+        options: [
+        { text: '全部', value: 'A' },
+        { text: '使用中', value: 'B' },
+        { text: '未使用', value: 'C' }
+      ]
     };
   },
   components: {
