@@ -12,11 +12,11 @@
       <button type="submit" class="btn btn-primary mb-2 d-inline-block ml-2 mr-5">新增</button>
 
       <select v-model="selected" class="form-control filterSelect d-inline-block">
-          <option v-for="option in options" v-bind:value="option.value" :key="option">
+          <option v-for="(option, i) in options" v-bind:value="option.value" :key="i">
             {{ option.text }}
           </option>
       </select>
-      <button type="button" class="btn btn-info float-right">下載</button>
+      <button type="button" class="btn btn-info float-right downloadBtn">下載</button>
     </div>
       <div class="text-muted text-left mb-4 tip">
         *必須為數字
@@ -26,7 +26,7 @@
   <!-- 表格 -->
   <div class="tab-pane fade show active container" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped text-center">
         <thead>
           <tr>
             <th scope="col">開始日期</th>
@@ -37,7 +37,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in itemList" :key="item.id">
+          <tr v-for="(item, i) in itemList" :key="i">
             <td class="">
               {{ item.created_date }}
             </td>
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-
+import $ from 'jquery'
 export default {
   name: "",
   props: {},
@@ -116,6 +116,7 @@ export default {
   },
   methods: {
     // 初始
+
   },
   //BEGIN--生命週期
   beforeCreate: function() {
@@ -131,6 +132,59 @@ export default {
   mounted: function() {
     //元素已掛載， $el 被建立。
     console.log(window.customElements)
+
+    // 下載功能
+    let downloadBtn = document.querySelector(".downloadBtn");
+    downloadBtn.addEventListener("click", downloadFile);
+    function downloadFile() {
+      //藉型別陣列建構的 blob 來建立 URL
+      let fileName = "fileName.csv";
+      const data = getRandomData();
+      let blob = new Blob([data], {
+        type: "application/octet-stream"
+      });
+      var href = URL.createObjectURL(blob);
+      // 從 Blob 取出資料
+      var link = document.createElement("a");
+      document.body.appendChild(link);
+      link.href = href;
+      link.download = fileName;
+      link.click();
+      console.log('blob:',blob)
+      console.log('href:',href)
+    }
+
+    function download(){ 
+      axios({ 
+          url:'https://source.unsplash.com/random/500x500', 
+          method:'GET', 
+          responseType: 'blob' 
+      }) 
+      .then((response) => { 
+            const url = window.URL 
+            .createObjectURL(new Blob([response.data])); 
+              const link = document.createElement('a'); 
+              link.href = url; 
+              link.setAttribute('download', 'image.jpg'); 
+              document.body.appendChild(link); 
+              link.click(); 
+        }) 
+      } 
+
+    //假資料
+    function getRandomData() {
+    var header = "RandomHeader";
+    var data = "";
+      for (let i = 0; i < 5; i++) {
+        for (var j = 0; j < 2; j++) {
+          if (j > 0) {
+            data = data + ",";
+          }
+          data = data + "Item" + i + "_" + j;
+        }
+      }
+      return header + data;
+    }
   },
   beforeUpdate: function() {
     //當資料變化時被呼叫，還不會描繪 View。
